@@ -18,3 +18,15 @@ docker build -t spacy-nlp .
 ```
 docker pull pasupulaphani/spacy-nlp-docker:en
 ```
+
+## Run tests
+
+```
+sh test.sh
+```
+
+### Get shell
+
+```
+docker run -it spacy-nlp /bin/bash
+```

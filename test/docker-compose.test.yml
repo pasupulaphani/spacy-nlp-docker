@@ -1,0 +1,9 @@
+version: '2'
+services:
+  sut:
+    build:
+      context: ../
+    command: 'python3 test/load_lang.py'
+    working_dir: /usr/spacy
+    volumes:
+      - .:/usr/spacy

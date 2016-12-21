@@ -1,5 +1,10 @@
 # spacy
 
+SpaCy python3
+
+- Install English tagger, parser and NER
+- English GloVe vectors
+
 ## Getting started
 
 - Build locally

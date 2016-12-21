@@ -3,14 +3,10 @@ import spacy
 nlp = spacy.load('en')
 
 def noun_chunks(text):
-
     result = []
     doc = nlp(text)
-
     for np in doc.noun_chunks:
-        print(np.text)
         result.append(np.text)
-
     return result
 
 

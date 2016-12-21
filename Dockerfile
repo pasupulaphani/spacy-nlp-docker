@@ -19,7 +19,7 @@ RUN pip3 install -r /usr/spacy/requirements.txt
 RUN python3 -m spacy.${LANG}.download all
 
 # Check whether the model was successfully installed
-RUN python -c "import os; lang = os.environ.get('LANG'); spacy.load(lang); print('Loaded ' + lang + ' OK')"
+RUN python2 -c "import spacy; import os; lang = os.environ.get('LANG'); spacy.load(lang); print('Loaded ' + lang + ' OK')"
 ###################
 
 WORKDIR /usr/spacy

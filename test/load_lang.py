@@ -1,3 +1,4 @@
+import spacy
 import os
 
 lang = os.environ.get('LANG')

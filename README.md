@@ -13,10 +13,8 @@ SpaCy python3
 docker build -t spacy-nlp .
 ```
 
-<!-- - (OR) Get latest from hub.docker.com
+- (OR) Get latest from hub.docker.com
 
 ```
-docker pull pasupulaphani/spacy-thrift:en
-``` -->
-
-Example
+docker pull pasupulaphani/spacy-nlp-docker:en
+```

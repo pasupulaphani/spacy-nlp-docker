@@ -2,8 +2,8 @@
 
 SpaCy python3
 
-- Install English tagger, parser and NER
-- English GloVe vectors
+- Installs English tagger, parser and NER
+- Installs English GloVe vectors
 
 ## Getting started
 

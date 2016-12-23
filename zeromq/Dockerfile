@@ -9,7 +9,7 @@ RUN mkdir -p $BASE_DIR
 VOLUME $BASE_DIR
 
 WORKDIR $BASE_DIR
-ADD zeromq $BASE_DIR
+ADD . $BASE_DIR
 
 ########################################
 # ZeroMQ

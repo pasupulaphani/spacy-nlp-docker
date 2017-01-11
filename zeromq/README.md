@@ -7,7 +7,7 @@ SpaCy zeromq
 - Build locally
 
 ```
-docker build -f zeromq/Dockerfile -t spacy-nlp-zeromq .
+docker build -f Dockerfile.zeromq -t spacy-nlp-zeromq .
 ```
 
 

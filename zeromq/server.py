@@ -1,23 +1,31 @@
 import zerorpc
 import os
+import sys
+import json
+import spacy
+import spacy.util
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '../spacyParser'))
+from parse import Parse
+from entities import Entities
+from noun_chunks import NounChunks
 
 port = os.environ.get('PORT')
 
-import spacy
-
-nlp = spacy.load('en')
-
-def noun_chunks(text):
-    result = []
-    doc = nlp(text)
-    for np in doc.noun_chunks:
-        result.append(np.text)
-    return result
-
+print("Loading model: 'en'")
+enNlpModel = spacy.load('en')
+print("Loaded model: 'en'")
 
 class SpacyNlpRPC(object):
     def parse(self, text):
-        return noun_chunks(text)
+        p = Parse(enNlpModel, text)
+        return json.dumps(p.to_json(), sort_keys=True, indent=2)
+    def entities(self, text):
+        e = Entities(enNlpModel, text)
+        return json.dumps(e.to_json(), sort_keys=True, indent=2)
+    def nounChunks(self, text):
+        ncs = NounChunks(enNlpModel, text)
+        return json.dumps(ncs.to_json(), sort_keys=True, indent=2)
 
 s = zerorpc.Server(SpacyNlpRPC())
 s.bind("tcp://0.0.0.0:" + port)

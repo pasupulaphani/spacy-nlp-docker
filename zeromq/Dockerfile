@@ -20,7 +20,7 @@ RUN apt-get install -y libzmq-dev
 
 # Install pyzmq: Python bindings for ZeroMQ
 RUN apt-get install -y python-setuptools
-RUN pip3 install -r $BASE_DIR/requirements.txt
+RUN pip3 install -r $BASE_DIR/zeromq/requirements.txt
 
 EXPOSE $PORT
 

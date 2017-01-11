@@ -1,13 +1,13 @@
-import spacy
+class NounChunks(object):
+    def __init__(self, nlp, text):
+        self.doc = nlp(text)
+        for np in list(self.doc.noun_chunks):
+            np.merge(np.root.tag_, np.root.lemma_, np.root.ent_type_)
 
-nlp = spacy.load('en')
+    def to_json(self):
+        words = [{'text': nc.text} for nc in self.doc.noun_chunks]
+        return words
 
-def get(text):
-
-    result = []
-    doc = nlp(text)
-
-    for np in doc.noun_chunks:
-        result.append(np.text)
-
-    return result
+    def to_list(self):
+        words = [nc.text for nc in self.doc.noun_chunks]
+        return words

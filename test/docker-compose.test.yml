@@ -7,3 +7,11 @@ services:
     working_dir: /usr/spacy
     volumes:
       - .:/usr/spacy
+  zeromq-sut:
+    build:
+      dockerfile: Dockerfile.zeromq
+      context: ../
+    command: 'python3 test/zeromq/suite.py'
+    working_dir: /usr/spacy
+    volumes:
+      - .:/usr/spacy

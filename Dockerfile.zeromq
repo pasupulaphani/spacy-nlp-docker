@@ -2,8 +2,8 @@ FROM pasupulaphani/spacy-nlp-docker:latest
 
 MAINTAINER Phaninder <pasupulaphani@gmail.com>
 
-ENV BASE_DIR /usr/zerorpc
-ENV PORT     4242
+ENV BASE_DIR          /usr/zerorpc
+ENV PORT              4242
 
 RUN mkdir -p $BASE_DIR
 VOLUME $BASE_DIR
@@ -14,7 +14,17 @@ ADD . $BASE_DIR
 ########################################
 # ZeroMQ
 ########################################
-RUN apt-get install -y libzmq-dev
+RUN apt-get install -y --force-yes \
+  apt-utils
+RUN wget https://github.com/zeromq/libzmq/archive/v4.2.1.tar.gz -O libzmq-4.2.1.tar.gz
+RUN tar -xvzf libzmq-4.2.1.tar.gz \
+  && cd libzmq-4.2.1/ \
+  && ./autogen.sh \
+  && ./configure \
+  && make \
+  && make check \
+  && make install \
+  && ldconfig
 
 ####################
 

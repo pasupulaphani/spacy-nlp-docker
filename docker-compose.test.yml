@@ -1,0 +1,30 @@
+version: '2'
+services:
+  spacy-nlp:
+    build:
+      context: ./
+    command: 'python3 test/noun_chunks_suite.py'
+    working_dir: /usr/spacy
+    volumes:
+      - .:/usr/spacy
+  spacy-nlp-zeromq:
+    build:
+      dockerfile: Dockerfile.zeromq
+      context: ./
+    environment:
+      PORT: 4242
+    command: 'python3 test/zeromq/suite.py'
+    working_dir: /usr/zerorpc
+    ports:
+      - 4242:4242
+    volumes:
+      - .:/usr/zerorpc
+  spacy-nlp-zeromq-test-sut:
+    build:
+      dockerfile: Dockerfile.test
+      context: ./
+    environment:
+      PORT: 4242
+    command: 'python3 test/zeromq/suite.py'
+    volumes:
+      - .:/usr/zerorpc

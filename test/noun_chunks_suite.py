@@ -23,4 +23,4 @@ print(actual)
 if expected == actual:
     print('Noun chunks successful')
 else:
-    raise Error('Noun chunks not same')
+    raise Exception('Noun chunks not same')

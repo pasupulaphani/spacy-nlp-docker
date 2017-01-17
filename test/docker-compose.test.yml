@@ -1,9 +1,0 @@
-version: '2'
-services:
-  sut:
-    build:
-      context: ../
-    command: 'python3 test/noun_chunks_suite.py'
-    working_dir: /usr/spacy
-    volumes:
-      - .:/usr/spacy

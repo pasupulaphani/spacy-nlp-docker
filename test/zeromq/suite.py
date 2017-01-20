@@ -1,16 +1,24 @@
 import zerorpc
 import json
+import os
 
 c = zerorpc.Client()
-c.connect('tcp://127.0.0.1:4242')
+
+host = 'tcp://' + os.environ.get('ZEROMQ_HOST') + ':' + os.environ.get('ZEROMQ_PORT')
+print("Conncting: " + host)
+c.connect(host)
 
 input = u'hotel new york'
-actual = json.loads(c.nounChunks(input))
+nounChunks = c.nounChunks(input)
+print('nounChunks: ')
+print(nounChunks)
+
+actual = json.loads(nounChunks)
 expected = json.loads("""[{"text": "hotel"},{"text": "new york"}]""")
 
-print('expected: ')
+print('Expected: ')
 print(expected)
-print('actual: ')
+print('Actual: ')
 print(actual)
 
 if actual == expected:

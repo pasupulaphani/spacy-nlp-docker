@@ -1,30 +1,38 @@
 version: '2'
 services:
-  spacy-nlp:
-    build:
-      context: ./
-    command: 'python3 test/noun_chunks_suite.py'
-    working_dir: /usr/spacy
-    volumes:
-      - .:/usr/spacy
-  spacy-nlp-zeromq:
+  zeromq:
     build:
       dockerfile: Dockerfile.zeromq
       context: ./
     environment:
+      HOST: zeromq
       PORT: 4242
-    command: 'python3 test/zeromq/suite.py'
+      LANG: en
+    command: 'python3 zeromq/server.py'
     working_dir: /usr/zerorpc
-    ports:
-      - 4242:4242
+    expose:
+      - 4242
     volumes:
       - .:/usr/zerorpc
-  spacy-nlp-zeromq-test-sut:
+    stdin_open: true
+    tty: true
+    restart: always
+  zeromq-test-sut:
     build:
       dockerfile: Dockerfile.test
       context: ./
     environment:
-      PORT: 4242
-    command: 'python3 test/zeromq/suite.py'
+      ZEROMQ_HOST: zeromq
+      ZEROMQ_PORT: 4242
+      LANG: en
+    command: ["./wait-for-it.sh", "-t", "300", "127.0.0.1:4242", "--strict", "--", "python3", "test/zeromq/suite.py"]
+    working_dir: /usr/test
+    depends_on:
+      - zeromq
+    links:
+      - zeromq
     volumes:
-      - .:/usr/zerorpc
+      - .:/usr/test
+    stdin_open: true
+    tty: true
+    restart: always

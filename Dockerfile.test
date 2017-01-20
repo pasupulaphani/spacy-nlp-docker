@@ -3,23 +3,16 @@ FROM zeromq/zeromq
 MAINTAINER Phaninder <pasupulaphani@gmail.com>
 
 ENV BASE_DIR          /usr/test
-ENV PORT              4242
 
 RUN mkdir -p $BASE_DIR
 VOLUME $BASE_DIR
 
+WORKDIR $BASE_DIR
 ADD . $BASE_DIR
 
-# Install Python.
-RUN \
-  apt-get update && \
-  apt-get install -y python python-dev python-pip python-virtualenv && \
-  rm -rf /var/lib/apt/lists/*
-
 # Install pyzmq: Python bindings for ZeroMQ
-RUN apt-get install -y python-setuptools
-RUN pip install -r $BASE_DIR/zeromq/requirements.txt
+RUN easy_install3 pip
+RUN pip3 install -r $BASE_DIR/zeromq/requirements.txt
 
-EXPOSE $PORT
-
-CMD ["python", "test/zeromq/suite.py"]
+CMD ["python3", "test/zeromq/suite.py"]
+ENTRYPOINT ["python3", "test/zeromq/suite.py"]

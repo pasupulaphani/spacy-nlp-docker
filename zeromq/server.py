@@ -28,5 +28,8 @@ class SpacyNlpRPC(object):
         return json.dumps(ncs.to_json(), sort_keys=True)
 
 s = zerorpc.Server(SpacyNlpRPC())
-s.bind("tcp://0.0.0.0:" + port)
+
+host = "tcp://0.0.0.0:" + port
+print("Listening on: " + host)
+s.bind(host)
 s.run()

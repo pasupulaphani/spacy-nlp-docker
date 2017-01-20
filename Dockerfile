@@ -19,7 +19,7 @@ RUN pip3 install -r /usr/spacy/requirements.txt
 RUN python3 -m spacy.${LANG}.download all
 
 # Check whether the model was successfully installed
-RUN python3 /usr/spacy/test/noun_chunks_suite.py
+RUN python3 /usr/spacy/test/load_lang.py
 ###################
 
 WORKDIR /usr/spacy

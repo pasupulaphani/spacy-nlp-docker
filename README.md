@@ -51,3 +51,12 @@ docker build -f Dockerfile.zeromq -t spacy-nlp-zeromq .
 ```
 docker run -v ${PWD}:/usr/zeromq --publish 4242:4242 --entrypoint=/bin/bash  -it spacy-nlp-zeromq
 ```
+
+
+# Troubleshoot
+
+Check if post is open
+
+```
+if ! nc -z 0.0.0.0 4242 2>&1 >/dev/null; then echo "NOT AVAILABLE"; fi
+```

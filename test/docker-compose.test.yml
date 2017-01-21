@@ -3,7 +3,7 @@ services:
   zeromq:
     build:
       dockerfile: Dockerfile.zeromq
-      context: ./
+      context: ../
     environment:
       HOST: zeromq
       PORT: 4242
@@ -20,11 +20,10 @@ services:
   zeromq-test-sut:
     build:
       dockerfile: Dockerfile.test
-      context: ./
+      context: ../
     environment:
       ZEROMQ_HOST: zeromq
       ZEROMQ_PORT: 4242
-      LANG: en
     command: ["./wait-for-it.sh", "-t", "300", "127.0.0.1:4242", "--strict", "--", "python3", "test/zeromq/suite.py"]
     working_dir: /usr/test
     depends_on:

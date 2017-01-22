@@ -16,8 +16,7 @@ RUN easy_install3 pip
 RUN pip3 install -r $BASE_DIR/zeromq/requirements.txt
 
 # nodejs
+RUN apt-get install -y --force-yes \
+  curl \
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 RUN apt-get install -y nodejs
-
-CMD ["python3", "test/zeromq/python_client/suite.py"]
-ENTRYPOINT ["python3", "test/zeromq/python_client/suite.py"]

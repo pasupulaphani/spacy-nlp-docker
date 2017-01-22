@@ -1,4 +1,3 @@
-process.chdir(__dirname);
 const zerorpc = require("zerorpc");
 
 const client = new zerorpc.Client();

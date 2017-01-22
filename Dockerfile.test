@@ -13,9 +13,9 @@ ADD . $BASE_DIR
 ####################################################
 ######### setup test/zeromq/python_client  #########
 # Install pyzmq: Python bindings for ZeroMQ
-RUN apt-get install -y python3-setuptools
-RUN easy_install3 pip
-RUN pip3 install -r $BASE_DIR/test/zeromq/python_client/requirements.txt
+RUN apt-get install -y python-setuptools
+RUN easy_install pip
+RUN pip install -r $BASE_DIR/test/zeromq/python_client/requirements.txt
 #########
 
 ##################################################

@@ -17,14 +17,32 @@ services:
     stdin_open: true
     tty: true
     restart: always
-  zeromq-test-sut:
+  zeromq-test-python-sut:
     build:
       dockerfile: Dockerfile.test
       context: ../
     environment:
       ZEROMQ_HOST: zeromq
       ZEROMQ_PORT: 4242
-    command: ["./wait-for-it.sh", "-t", "300", "127.0.0.1:4242", "--strict", "--", "python3", "test/zeromq/suite.py"]
+    command: ["./wait-for-it.sh", "-t", "300", "127.0.0.1:4242", "--strict", "--", "python3", "test/zeromq/python_client/suite.py"]
+    working_dir: /usr/test
+    depends_on:
+      - zeromq
+    links:
+      - zeromq
+    volumes:
+      - .:/usr/test
+    stdin_open: true
+    tty: true
+    restart: always
+  zeromq-test-node-sut:
+    build:
+      dockerfile: Dockerfile.test
+      context: ../
+    environment:
+      ZEROMQ_HOST: zeromq
+      ZEROMQ_PORT: 4242
+    command: ["./wait-for-it.sh", "-t", "300", "127.0.0.1:4242", "--strict", "--", "node", "test/zeromq/node_client/suite.js"]
     working_dir: /usr/test
     depends_on:
       - zeromq

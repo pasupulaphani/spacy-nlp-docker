@@ -11,8 +11,13 @@ WORKDIR $BASE_DIR
 ADD . $BASE_DIR
 
 # Install pyzmq: Python bindings for ZeroMQ
+RUN apt-get install -y python3-setuptools
 RUN easy_install3 pip
 RUN pip3 install -r $BASE_DIR/zeromq/requirements.txt
 
-CMD ["python3", "test/zeromq/suite.py"]
-ENTRYPOINT ["python3", "test/zeromq/suite.py"]
+# nodejs
+RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+RUN apt-get install -y nodejs
+
+CMD ["python3", "test/zeromq/python_client/suite.py"]
+ENTRYPOINT ["python3", "test/zeromq/python_client/suite.py"]

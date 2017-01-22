@@ -45,7 +45,7 @@ services:
     environment:
       ZEROMQ_HOST: zeromq
       ZEROMQ_PORT: 4242
-    command: ["./wait-for-it.sh", "-t", "300", "zeromq:4242", "--strict", "--", "node", "test/zeromq/node_client/suite.js"]
+    command: ["./wait-for-it.sh", "-t", "300", "zeromq:4242", "--strict", "--", "nodejs", "test/zeromq/node_client/suite.js"]
     working_dir: /usr/test
     depends_on:
       - zeromq

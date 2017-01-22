@@ -10,13 +10,25 @@ VOLUME $BASE_DIR
 WORKDIR $BASE_DIR
 ADD . $BASE_DIR
 
+####################################################
+######### setup test/zeromq/python_client  #########
 # Install pyzmq: Python bindings for ZeroMQ
 RUN apt-get install -y python3-setuptools
 RUN easy_install3 pip
-RUN pip3 install -r $BASE_DIR/zeromq/requirements.txt
+RUN pip3 install -r $BASE_DIR/test/zeromq/python_client/requirements.txt
+#########
 
+##################################################
+######### setup test/zeromq/node_client  #########
 # nodejs
-RUN apt-get install -y --force-yes \
-  curl \
+RUN apt-get update && apt-get -qq update && apt-get install -y --force-yes \
+  curl
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 RUN apt-get install -y nodejs
+WORKDIR $BASE_DIR/test/zeromq/node_client
+RUN if [ -d node_modules ]; then rm -r node_modules; fi
+RUN npm install
+#########
+
+
+WORKDIR $BASE_DIR

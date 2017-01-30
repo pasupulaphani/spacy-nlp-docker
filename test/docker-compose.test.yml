@@ -10,11 +10,11 @@ services:
       PORT: 4242
       LANG: en
     command: 'python3 zeromq/server.py'
-    working_dir: /usr/zerorpc
+    working_dir: /usr/zeromq
     expose:
       - 4242
     volumes:
-      - ../:/usr/zerorpc
+      - ../:/usr/zeromq
     stdin_open: true
     tty: true
     restart: always

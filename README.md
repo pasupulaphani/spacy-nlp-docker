@@ -42,14 +42,20 @@ SpaCy with zeromq bindings
 - Build locally
 
 ```
-docker build -f Dockerfile.zeromq -t spacy-nlp-zeromq .
+docker build -f Dockerfile.zeromq -t spacy-nlp:zeromq-en .
+```
+- (OR) Get latest from hub.docker.com
+
+```
+docker pull pasupulaphani/spacy-nlp-docker:zeromq-en
 ```
 
 
 ### Get shell
 
 ```
-docker run -v ${PWD}:/usr/zeromq --publish 4242:4242 --entrypoint=/bin/bash  -it spacy-nlp-zeromq
+docker run -v ${PWD}:/usr/zeromq --publish 4242:4242 --entrypoint=/bin/bash  -it spacy-nlp:zeromq-en
+python3 /usr/zeromq/zeromq/server.py
 ```
 
 

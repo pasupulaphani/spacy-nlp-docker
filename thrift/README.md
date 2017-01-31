@@ -1,4 +1,4 @@
-# spacy-nlp-thrift-docker
+# spacy-nlp-thrift
 
 SpaCy thrift
 

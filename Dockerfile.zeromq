@@ -1,4 +1,4 @@
-FROM pasupulaphani/spacy-nlp-docker:latest
+FROM pasupulaphani/spacy-nlp:en
 
 MAINTAINER Phaninder <pasupulaphani@gmail.com>
 

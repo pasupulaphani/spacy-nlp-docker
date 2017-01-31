@@ -2,7 +2,8 @@ FROM python:3.5-slim
 
 MAINTAINER Phaninder <pasupulaphani@gmail.com>
 
-ENV LANG en
+ENV LANG             en
+ENV SPACY_VERSION    1.6
 
 RUN mkdir -p /usr/spacy
 COPY . /usr/spacy/
@@ -15,7 +16,7 @@ RUN pip3 install --upgrade pip setuptools
 ########################################
 # spaCy
 ########################################
-RUN pip3 install -r /usr/spacy/requirements.txt
+RUN pip3 install spacy==${SPACY_VERSION}
 RUN python3 -m spacy.${LANG}.download all
 
 # Check whether the model was successfully installed

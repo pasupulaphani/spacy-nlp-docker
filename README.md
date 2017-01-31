@@ -10,7 +10,7 @@ SpaCy python3
 - Build locally
 
 ```
-docker build -t spacy-nlp .
+docker build -t spacy-nlp:en .
 ```
 
 - (OR) Get latest from hub.docker.com

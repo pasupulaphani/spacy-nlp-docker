@@ -51,7 +51,7 @@ docker pull pasupulaphani/spacy-nlp-zeromq:en
 ```
 
 
-### Get shell
+### Get shell/Run locally
 
 ```
 docker run -v ${PWD}:/usr/zeromq --publish 4242:4242 --entrypoint=/bin/bash  -it spacy-nlp-zeromq:en

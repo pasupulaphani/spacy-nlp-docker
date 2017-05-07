@@ -3,7 +3,7 @@ FROM python:3.5-slim
 MAINTAINER Phaninder <pasupulaphani@gmail.com>
 
 ENV LANG             en
-ENV SPACY_VERSION    1.6
+ENV SPACY_VERSION    1.7
 
 RUN mkdir -p /usr/spacy
 COPY . /usr/spacy/

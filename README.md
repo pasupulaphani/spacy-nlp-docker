@@ -1,6 +1,6 @@
 # spacy-nlp
 
-SpaCy python3
+SpaCy-1.7 python3
 
 - Installs English tagger, parser and NER
 - Installs English GloVe vectors

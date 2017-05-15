@@ -4,11 +4,16 @@ import os
 
 c = zerorpc.Client()
 
-host = 'tcp://' + os.environ.get('ZEROMQ_HOST') + ':' + os.environ.get('ZEROMQ_PORT')
-print("Conncting: " + host)
-c.connect(host)
+host = os.environ.get('ZEROMQ_HOST')
+host = host if host else "0.0.0.0"
+port = os.environ.get('ZEROMQ_PORT')
+port = port if port else "4242"
 
-input = u'hotel new york'
+conn_str = 'tcp://' + host + ':' + port
+print("Conncting: " + conn_str)
+c.connect(conn_str)
+
+input = u'hotel in new york'
 nounChunks = c.nounChunks(input)
 print('nounChunks: ')
 print(nounChunks)

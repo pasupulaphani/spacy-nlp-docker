@@ -1,0 +1,21 @@
+FROM zeromq/zeromq
+
+MAINTAINER Phaninder <pasupulaphani@gmail.com>
+
+ENV BASE_DIR          /usr/test
+
+RUN mkdir -p $BASE_DIR
+VOLUME $BASE_DIR
+
+WORKDIR $BASE_DIR
+ADD . $BASE_DIR
+
+####################################################
+######### setup test/zeromq/python_client  #########
+# Install pyzmq: Python bindings for ZeroMQ
+RUN apt-get install -y python-setuptools
+RUN easy_install pip
+RUN pip install -r $BASE_DIR/test/zeromq/python_client/requirements.txt
+#########
+
+WORKDIR $BASE_DIR

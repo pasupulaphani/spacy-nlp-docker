@@ -12,6 +12,18 @@ client.on("error", function(error) {
   console.error("RPC client error:", error);
 });
 
+client.invoke("parse", "hotel new york", function(error, res, more) {
+  if(error) {
+    console.error(error);
+  } else {
+    console.log("Replied:", res);
+  }
+
+  if(!more) {
+    console.log("Done.");
+  }
+});
+
 client.invoke("nounChunks", "hotel new york", function(error, res, more) {
   if(error) {
     console.error(error);

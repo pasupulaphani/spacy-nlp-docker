@@ -21,8 +21,8 @@ services:
   zeromq-test-python-sut:
     container_name: zeromq-test-python-sut
     build:
-      dockerfile: Dockerfile.test
-      context: ../
+      dockerfile: Dockerfile.python
+      context: .
     environment:
       ZEROMQ_HOST: zeromq
       ZEROMQ_PORT: 4242
@@ -40,8 +40,8 @@ services:
   zeromq-test-node-sut:
     container_name: zeromq-test-node-sut
     build:
-      dockerfile: Dockerfile.test
-      context: ../
+      dockerfile: Dockerfile.node
+      context: .
     environment:
       ZEROMQ_HOST: zeromq
       ZEROMQ_PORT: 4242

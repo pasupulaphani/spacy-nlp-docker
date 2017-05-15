@@ -18,23 +18,30 @@ logging.info("Loading model: 'en'")
 enNlpModel = spacy.load('en')
 logging.info("Loaded model: 'en'")
 
+def decodeReqText(data):
+    if isinstance(data, (bytes, bytearray)):
+        return data.decode("utf-8")
+    else:
+        return data
+
+
 class SpacyNlpRPC(object):
-    def parse(self, bytes):
-        text = bytes
+    def parse(self, data):
+        text = decodeReqText(data)
         print('parse: text - ' + text)
         p = Parse(enNlpModel, text)
         res = json.dumps(p.to_json(), sort_keys=True)
         logging.debug('parse: result - ' + res)
         return res
-    def entities(self, bytes):
-        text = bytes
+    def entities(self, data):
+        text = decodeReqText(data)
         logging.debug('entities: text - ' + text)
         e = Entities(enNlpModel, text)
         res = json.dumps(e.to_json(), sort_keys=True)
         logging.debug('entities: result - ' + res)
         return res
-    def nounChunks(self, bytes):
-        text = bytes
+    def nounChunks(self, data):
+        text = decodeReqText(data)
         logging.debug('nounChunks: text - ' + text)
         ncs = NounChunks(enNlpModel, text)
         res = json.dumps(ncs.to_json(), sort_keys=True)

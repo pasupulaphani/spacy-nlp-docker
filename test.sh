@@ -20,7 +20,7 @@ if [ $? -ne 0 ] ; then
   exit -1
 fi
 
-for i in $(docker-compose -f test/docker-compose.test.yml -p ci ps | awk '{ print $1 }' | grep sut); do
+for i in $(docker ps | awk '{ print $2 }' | grep sut); do
   # wait for the test service to complete and grab the exit code
   TEST_EXIT_CODE=`docker wait $i`
 

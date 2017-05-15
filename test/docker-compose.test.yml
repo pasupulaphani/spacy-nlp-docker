@@ -26,7 +26,7 @@ services:
     environment:
       ZEROMQ_HOST: zeromq
       ZEROMQ_PORT: 4242
-    command: ["./wait-for-it.sh", "-t", "300", "zeromq:4242", "--strict", "--", "python", "test/zeromq/python_client/suite.py"]
+    command: ["./wait-for-it.sh", "-t", "300", "zeromq:4242", "--strict", "--", "python", "zeromq/python_client/suite.py"]
     working_dir: /usr/test
     depends_on:
       - zeromq
@@ -46,7 +46,7 @@ services:
       ZEROMQ_HOST: zeromq
       ZEROMQ_PORT: 4242
     command: ["/usr/test/wait-for-it.sh", "-t", "700", "zeromq:4242", "--strict", "--", "nodejs", "suite.js"]
-    working_dir: /usr/test/test/zeromq/node_client
+    working_dir: /usr/test/zeromq/node_client
     depends_on:
       - zeromq
     links:

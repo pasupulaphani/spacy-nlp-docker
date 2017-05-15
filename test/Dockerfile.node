@@ -10,14 +10,16 @@ VOLUME $BASE_DIR
 WORKDIR $BASE_DIR
 ADD . $BASE_DIR
 
+RUN apt-get install -y python-setuptools
+
 ##################################################
-######### setup test/zeromq/node_client  #########
+######### setup zeromq/node_client  #########
 # nodejs
 RUN apt-get update && apt-get -qq update && apt-get install -y --force-yes \
   curl
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 RUN apt-get install -y nodejs
-WORKDIR $BASE_DIR/test/zeromq/node_client
+WORKDIR $BASE_DIR/zeromq/node_client
 RUN if [ -d node_modules ]; then rm -r node_modules; fi
 RUN npm install
 #########

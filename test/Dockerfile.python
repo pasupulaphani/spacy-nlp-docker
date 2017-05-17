@@ -5,7 +5,6 @@ MAINTAINER Phaninder <pasupulaphani@gmail.com>
 ENV BASE_DIR          /usr/test
 
 RUN mkdir -p $BASE_DIR
-VOLUME $BASE_DIR
 
 WORKDIR $BASE_DIR
 ADD . $BASE_DIR
@@ -17,5 +16,3 @@ RUN apt-get install -y python-setuptools
 RUN easy_install pip
 RUN pip install -r $BASE_DIR/zeromq/python_client/requirements.txt
 #########
-
-WORKDIR $BASE_DIR

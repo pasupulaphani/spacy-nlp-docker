@@ -1,7 +1,7 @@
 version: '2'
 services:
   zeromq:
-    container_name: zeromq
+    container_name: spacy-zeromq
     build:
       dockerfile: Dockerfile.zeromq
       context: ../
@@ -26,14 +26,12 @@ services:
     environment:
       ZEROMQ_HOST: zeromq
       ZEROMQ_PORT: 4242
-    command: ["./wait-for-it.sh", "-t", "300", "zeromq:4242", "--strict", "--", "python", "zeromq/python_client/suite.py"]
+    command: ["/usr/test/wait-for-it.sh", "-t", "300", "zeromq:4242", "--strict", "--", "python", "zeromq/python_client/suite.py"]
     working_dir: /usr/test
     depends_on:
       - zeromq
     links:
       - zeromq
-    volumes:
-      - ../:/usr/test
     stdin_open: true
     tty: true
     restart: always

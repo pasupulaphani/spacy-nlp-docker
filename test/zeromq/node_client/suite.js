@@ -5,8 +5,8 @@ const client = new zerorpc.Client();
 const port = process.env.ZEROMQ_PORT || "4242";
 const host = process.env.ZEROMQ_HOST || "0.0.0.0";
 
+console.log(`Connecting to tcp://${host}:${port}`)
 client.connect(`tcp://${host}:${port}`);
-console.log(`Connect to tcp://${host}:${port}`)
 
 client.on("error", function(error) {
   console.error("RPC client error:", error);
